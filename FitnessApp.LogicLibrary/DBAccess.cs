@@ -25,4 +25,12 @@ public class DBAccess
         }
     }
 
+    public static void SaveUserProfile(UserProfile user)
+    {
+        using (IDbConnection connection = new SQLiteConnection("Data Source=FitnessAppDB.db;Version=3;"))
+        {
+            connection.Execute("insert into User (Username, Password, Height, Weight, Age) " +
+                "values (@Name, @Password, @Height, @Weight, @Age)", user);
+        }
+    }
 }

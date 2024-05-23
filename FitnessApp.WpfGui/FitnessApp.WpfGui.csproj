@@ -9,7 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="FitnessAppDB.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="FitnessAppDB.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FitnessApp.LogicLibrary\FitnessApp.LogicLibrary.csproj" />
   </ItemGroup>
 
 </Project>

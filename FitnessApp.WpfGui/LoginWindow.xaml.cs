@@ -19,12 +19,21 @@ namespace FitnessApp.WpfGui
 
             if (username == "admin" && password == "password") // Simple credential check
             {
-                MessageBox.Show("Succes");
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                Close();
             }
             else
             {
                 MessageBox.Show("Invalid username or password. Please try again.");
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CreateProfileWindow createProfileWindow = new CreateProfileWindow();
+            createProfileWindow.Show();
+            Close();
         }
     }
 }
