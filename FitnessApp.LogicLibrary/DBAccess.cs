@@ -6,11 +6,12 @@ namespace FitnessApp.LogicLibrary;
 
 public class DBAccess
 {
-    public static List<Workout> LoadWorkouts()
+    public static List<Workout> LoadWorkouts(int userId)
     {
         using (IDbConnection connection = new SQLiteConnection("Data Source=./FitnessAppDB.db;Version=3;"))
         {
-            var output = connection.Query<Workout>("select * from Workout", new DynamicParameters());
+            var output = connection.Query<Workout>("select * from Workout " +
+                "where UserId = @UserId", new { UserId = userId }); ;
             return output.ToList();
         }
     }

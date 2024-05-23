@@ -7,6 +7,7 @@ public class Workout
     public DateTime PerformedOn { get; set; }
     public int Calories { get; set; }
     public int AvgHeartRate { get; set; }
+    public int UserId { get; set; }
     public TimeSpan TimeSpanDuration => TimeSpan.FromSeconds(Duration);
 
     public override string? ToString()
