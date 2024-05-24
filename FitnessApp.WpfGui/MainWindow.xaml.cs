@@ -4,9 +4,6 @@ using System.Windows;
 
 namespace FitnessApp.WpfGui
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private CurrentUser? _currentUser;
@@ -28,7 +25,8 @@ namespace FitnessApp.WpfGui
 
         private void AddWorkoutButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            AddWorkoutWindow addWorkoutWindow = new AddWorkoutWindow(); 
+            addWorkoutWindow.Show();
         }
     }
 }

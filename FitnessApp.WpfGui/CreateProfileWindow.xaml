@@ -31,19 +31,19 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="Username:" Margin="5" FontSize="20"/>
+                <Label Grid.Row="0" Grid.Column="0" Content="Username:" Margin="5" FontSize="20" FontWeight="Bold"/> 
                 <TextBox Name="NameTextBox" Grid.Row="0" Grid.Column="1" Margin="5" GotFocus="NameTextBox_GotFocus" FontSize="20"/>
 
-                <Label Grid.Row="1" Grid.Column="0" Content="Password:" Margin="5" FontSize="20"/>
+                <Label Grid.Row="1" Grid.Column="0" Content="Password:" Margin="5" FontSize="20" FontWeight="Bold"/>
                 <TextBox Name="PasswordTextBox" Grid.Row="1" Grid.Column="1" Margin="5" GotFocus="PasswordTextBox_GotFocus" FontSize="20"/>
 
-                <Label Grid.Row="2" Grid.Column="0" Content="Height:" Margin="5" FontSize="20"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Height:" Margin="5" FontSize="20" FontWeight="Bold"/>
                 <TextBox Name="HeightTextBox" Grid.Row="2" Grid.Column="1" Margin="5" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" GotFocus="HeightTextBox_GotFocus" FontSize="20"/>
 
-                <Label Grid.Row="3" Grid.Column="0" Content="Weight:" Margin="5" FontSize="20"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="Weight:" Margin="5" FontSize="20" FontWeight="Bold"/>
                 <TextBox Name="WeightTextBox" Grid.Row="3" Grid.Column="1" Margin="5" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" GotFocus="WeightTextBox_GotFocus" FontSize="20"/>
                 
-                <Label Grid.Row="4" Grid.Column="0" Content="Age:" Margin="5" FontSize="20"/>
+                <Label Grid.Row="4" Grid.Column="0" Content="Age:" Margin="5" FontSize="20" FontWeight="Bold"/>
                 <TextBox Name="AgeTextBox" Grid.Row="4" Grid.Column="1" Margin="5" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" GotFocus="AgeTextBox_GotFocus" FontSize="20"/>
             </Grid> 
         </StackPanel>

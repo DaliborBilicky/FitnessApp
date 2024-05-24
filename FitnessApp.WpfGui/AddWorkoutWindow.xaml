@@ -1,0 +1,69 @@
+﻿<Window x:Class="FitnessApp.WpfGui.AddWorkoutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FitnessApp.WpfGui"
+        mc:Ignorable="d"
+        Title="AddWorkoutWindow" Height="450" Width="700">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.ColumnSpan="3" Content="Add workout" FontSize="50" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="75*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Workout type:" Margin="5" FontSize="20" FontWeight="Bold"/>
+                <ComboBox Name="WorkoutTypeComboBox" Grid.Row="0" Grid.Column="1" Margin="5" FontSize="20" Background="#FF0081FF" BorderBrush="Blue" Foreground="white"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Duration:" Margin="5" FontSize="20" FontWeight="Bold"/>
+                <StackPanel Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" Margin="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="HH :" Grid.Column="0" FontSize="20"/>
+                        <TextBox Name="HoursTextBox" Grid.Column="1" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" FontSize="20"/>
+
+                        <Label Content="MM :" Grid.Column="2" FontSize="20"/>
+                        <TextBox Name="MinutesTextBox" Grid.Column="3" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" FontSize="20"/>
+
+                        <Label Content="SS :" Grid.Column="4" FontSize="20"/>
+                        <TextBox Name="SecondsTextBox" Grid.Column="5" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" FontSize="20"/>
+                    </Grid> 
+                </StackPanel>
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Calories:" Margin="5" FontSize="20" FontWeight="Bold"/>
+                <TextBox Name="CaloriesTextBox" Grid.Row="2" Grid.Column="1" Margin="5" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" FontSize="20"/>
+
+                <Label Grid.Row="3" Grid.Column="0" Content="Avg. heart rate:" Margin="5" FontSize="20" FontWeight="Bold"/>
+                <TextBox Name="AvgHeartRateTextBox" Grid.Row="3" Grid.Column="1" Margin="5" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" FontSize="20"/>
+            </Grid> 
+        </StackPanel>
+        <Button Name="AddWorkoutButton" Grid.Row="2" Grid.Column="1" Content="Add" FontSize="30" Margin="10" Background="#FF0081FF" BorderBrush="Blue" Foreground="white" Click="AddWorkoutButton_Click"/>
+    </Grid>
+</Window>

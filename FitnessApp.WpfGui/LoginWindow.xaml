@@ -35,7 +35,7 @@
                     <ColumnDefinition Width="25*"/>
                     <ColumnDefinition Width="5*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Don't have profile?" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20"/>
+                <Label Grid.Column="0" Content="Don't have profile?" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold"/>
                 <Button Grid.Column="1" Content="Create" Background="White" BorderBrush="White" Foreground="Blue" VerticalAlignment="Center" HorizontalAlignment="Left" Click="Button_Click" FontSize="20" FontWeight="Bold"/> 
             </Grid> 
         </StackPanel>
