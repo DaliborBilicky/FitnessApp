@@ -8,14 +8,14 @@ public class DBAccess
 {
     private const string ConnectionString = "Data Source=./FitnessAppDB.db;Version=3;";
 
-    public static List<Workout> LoadWorkouts(int userId)
+    public static List<Workout> LoadWorkouts(string username)
     {
         try
         {
             using (IDbConnection connection = new SQLiteConnection(ConnectionString))
             {
-                string query = "SELECT * FROM Workout WHERE UserId = @UserId";
-                var output = connection.Query<Workout>(query, new { UserId = userId });
+                string query = "SELECT * FROM Workout WHERE Username = @Username";
+                var output = connection.Query<Workout>(query, new { Username = username });
                 return output.ToList();
             }
         }

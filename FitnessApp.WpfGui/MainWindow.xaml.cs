@@ -1,13 +1,6 @@
-﻿using System.Text;
+﻿using FitnessApp.LogicLibrary;
+using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace FitnessApp.WpfGui
 {
@@ -16,9 +9,26 @@ namespace FitnessApp.WpfGui
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private CurrentUser? _currentUser;
+        private List<Workout>? _workouts;
+        public MainWindow(ref CurrentUser currentUser)
         {
             InitializeComponent();
+            _currentUser = currentUser;
+            if (_currentUser is not null && _currentUser.CurrentProfile is not null) 
+            {
+                UserLabel.Content = _currentUser.CurrentProfile;
+                _workouts = DBAccess.LoadWorkouts(_currentUser.CurrentProfile.Username);
+            }
+            else 
+            {
+                MessageBox.Show("Something went wrong. User is null.");
+            }
+        }
+
+        private void AddWorkoutButton_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

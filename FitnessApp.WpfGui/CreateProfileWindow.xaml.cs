@@ -12,11 +12,12 @@ namespace FitnessApp.WpfGui
     public partial class CreateProfileWindow : Window
     {
         private Brush _originalTextBoxColor;
+        private CurrentUser _currentUser;
 
         public CreateProfileWindow()
         {
             InitializeComponent();
-
+            _currentUser = new CurrentUser();
             _originalTextBoxColor = PasswordTextBox.Background;
         }
 
@@ -52,7 +53,7 @@ namespace FitnessApp.WpfGui
 
         private void CreateProfileButton_Click(object sender, RoutedEventArgs e)
         {
-            UserProfile user = new UserProfile();
+            UserProfile user = new UserProfile() { Username = " " };
             string name = NameTextBox.Text;
             string password = PasswordTextBox.Text;
             string hieght = HeightTextBox.Text;
@@ -62,13 +63,21 @@ namespace FitnessApp.WpfGui
 
             if (name == "")
             {
-                MessageBox.Show("Forgot to insert name.");
+                MessageBox.Show("Forgot to insert name or it's already taken.");
                 NameTextBox.Background = Brushes.Red;
                 isValid = false;
             }
             else
             {
-                user.Username = name;
+                if (IsLogginUnique(name)) 
+                { 
+                    user.Username = name;
+                } else 
+                { 
+                    MessageBox.Show("Userame it's already taken.");
+                    NameTextBox.Background = Brushes.Red;
+                    isValid = false;
+                }
             }
             if (password.Length < 5)
             {
@@ -115,7 +124,8 @@ namespace FitnessApp.WpfGui
                 try
                 {
                     DBAccess.SaveUserProfile(user);
-                    MainWindow main = new MainWindow();
+                    _currentUser.CurrentProfile = user;
+                    MainWindow main = new MainWindow(ref _currentUser);
                     main.Show();
                     Close();
                 }
@@ -150,6 +160,19 @@ namespace FitnessApp.WpfGui
         private void NameTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             NameTextBox.Background = _originalTextBoxColor;
+        }
+
+        private bool IsLogginUnique(string username) 
+        {
+            List<UserProfile> users = DBAccess.LoadUsers();
+            foreach (var user in users)
+            {
+                if (user.Username == username) 
+                { 
+                    return false; 
+                }
+            }
+            return true;
         }
     }
 }

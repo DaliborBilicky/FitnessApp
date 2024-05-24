@@ -8,27 +8,32 @@ namespace FitnessApp.WpfGui
     /// </summary>
     public partial class LoginWindow : Window
     {
-        public CurrentUser CurrentUser { get; set; }
+        private CurrentUser _currentUser;
 
         public LoginWindow()
         {
             InitializeComponent();
-            CurrentUser = new CurrentUser();
+            _currentUser = new CurrentUser();
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string username = NameLoginTextBox.Text;
             string password = PasswordLoginBox.Password;
-            UserProfile loginInUser = new UserProfile();
-            loginInUser.Username = username;
-            loginInUser.Password = password;
-
-            if (CurrentUser.IsLoginValid(loginInUser)) // Simple credential check
+            UserProfile loginInUser = new UserProfile
             {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                Close();
+                Username = username,
+                Password = password
+            };
+
+            if (_currentUser.IsLoginValid(loginInUser))
+            {
+                if (_currentUser is not null) 
+                { 
+                    MainWindow mainWindow = new MainWindow(ref _currentUser);
+                    mainWindow.Show();
+                    Close();
+                }
             }
             else
             {

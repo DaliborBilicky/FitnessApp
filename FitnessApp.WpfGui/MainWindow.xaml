@@ -5,8 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitnessApp.WpfGui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1000">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Background="#FF0081FF">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="FitnessApp" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="50" FontWeight="ExtraBlack" Foreground="White"/>
+                <Label Grid.Row="1" Name="UserLabel" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="30" FontWeight="Bold" Foreground="White"/>
+            </Grid> 
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                     <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Name="AddWorkoutButton" Grid.Row="0" Grid.Column="0" Content="Add workout" Margin="5" VerticalAlignment="Center" FontSize="20" Background="#FF0081FF" BorderBrush="Blue" Foreground="white" Click="AddWorkoutButton_Click"/>
+                        <ComboBox Name="FilterWorkoutsComboBox" Grid.Column="1" Grid.Row="0" Margin="5" VerticalAlignment="Center" FontSize="20" Background="#FF0081FF" BorderBrush="Blue" Foreground="White"/>
+                        <ListBox Grid.Row="1" Grid.ColumnSpan="2" Name="WorkoutsListBox">
+                             <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Type}" FontSize="25" FontWeight="SemiBold"/>
+                                        <TextBlock>
+                                            <Run Text="Duration: " FontWeight="Bold"/>
+                                            <Run Text="{Binding Duration}"/>
+                                        </TextBlock>
+                                        <TextBlock>
+                                            <Run Text="Calories: " FontWeight="Bold"/>
+                                            <Run Text="{Binding Calories}"/>
+                                        </TextBlock>
+                                        <TextBlock>
+                                            <Run Text="Average heart rate: " FontWeight="Bold"/>
+                                            <Run Text="{Binding AvgHeartRate}"/>
+                                        </TextBlock>
+                                        <TextBlock>
+                                            <Run Text="{Binding PerformedOn}"/>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate> 
+                        </ListBox>
+                    </Grid>
+                </StackPanel>
+            </Grid> 
+        </StackPanel>
     </Grid>
 </Window>
