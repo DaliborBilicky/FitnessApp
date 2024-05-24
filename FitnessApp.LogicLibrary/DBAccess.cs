@@ -6,31 +6,75 @@ namespace FitnessApp.LogicLibrary;
 
 public class DBAccess
 {
+    private const string ConnectionString = "Data Source=./FitnessAppDB.db;Version=3;";
+
     public static List<Workout> LoadWorkouts(int userId)
     {
-        using (IDbConnection connection = new SQLiteConnection("Data Source=./FitnessAppDB.db;Version=3;"))
+        try
         {
-            var output = connection.Query<Workout>("select * from Workout " +
-                "where UserId = @UserId", new { UserId = userId }); ;
-            return output.ToList();
+            using (IDbConnection connection = new SQLiteConnection(ConnectionString))
+            {
+                string query = "SELECT * FROM Workout WHERE UserId = @UserId";
+                var output = connection.Query<Workout>(query, new { UserId = userId });
+                return output.ToList();
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error loading workouts.", ex);
         }
     }
 
-    public static void SaveWorkout(Workout workout)
+    public static List<UserProfile> LoadUsers()
     {
-        using (IDbConnection connection = new SQLiteConnection("Data Source=FitnessAppDB.db;Version=3;"))
+        try
         {
-            connection.Execute("insert into Workout (Type, Duration, Calories, AvgHeartRate, PerformedOn) " +
-                "values (@Type, @Duration, @Calories, @AvgHeartRate, @PerformedOn)", workout);
+            using (IDbConnection connection = new SQLiteConnection(ConnectionString))
+            {
+                var query = "SELECT * FROM User";
+                var output = connection.Query<UserProfile>(query);
+                return output.ToList();
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error loading users.", ex);
         }
     }
 
-    public static void SaveUserProfile(UserProfile user)
+    public static int SaveWorkout(Workout workout)
     {
-        using (IDbConnection connection = new SQLiteConnection("Data Source=FitnessAppDB.db;Version=3;"))
+        try
         {
-            connection.Execute("insert into User (Username, Password, Height, Weight, Age) " +
-                "values (@Name, @Password, @Height, @Weight, @Age)", user);
+            using (IDbConnection connection = new SQLiteConnection(ConnectionString))
+            {
+                string query = 
+                    "INSERT INTO Workout (Type, Duration, Calories, AvgHeartRate, PerformedOn) " +
+                    "VALUES (@Type, @Duration, @Calories, @AvgHeartRate, @PerformedOn)";
+                return connection.Execute(query, workout);
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error saving workout.", ex);
+        }
+    }
+
+    public static int SaveUserProfile(UserProfile user)
+    {
+        try
+        {
+            using (IDbConnection connection = new SQLiteConnection(ConnectionString))
+            {
+                string query = 
+                    "INSERT INTO User (Username, Password, Height, Weight, Age) " +
+                    "VALUES (@Username, @Password, @Height, @Weight, @Age)";
+                return connection.Execute(query, user);
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error saving user profile.", ex);
         }
     }
 }

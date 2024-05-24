@@ -58,19 +58,23 @@ namespace FitnessApp.WpfGui
             string hieght = HeightTextBox.Text;
             string weight = WeightTextBox.Text;
             string age = AgeTextBox.Text;
+            bool isValid = true;
+
             if (name == "")
             {
                 MessageBox.Show("Forgot to insert name.");
                 NameTextBox.Background = Brushes.Red;
+                isValid = false;
             }
             else
             {
-                user.Name = name;
+                user.Username = name;
             }
             if (password.Length < 5)
             {
                 MessageBox.Show("Password to short. At least 6 chars.");
                 PasswordTextBox.Background = Brushes.Red;
+                isValid = false;
             }
             else
             {
@@ -80,6 +84,7 @@ namespace FitnessApp.WpfGui
             {
                 MessageBox.Show("Forgot to insert height.");
                 HeightTextBox.Background = Brushes.Red;
+                isValid = false;
             }
             else 
             { 
@@ -89,6 +94,7 @@ namespace FitnessApp.WpfGui
             {
                 MessageBox.Show("Forgot to insert weight.");
                 WeightTextBox.Background = Brushes.Red;
+                isValid = false;
             }
             else 
             { 
@@ -98,15 +104,27 @@ namespace FitnessApp.WpfGui
             {
                 MessageBox.Show("Forgot to insert age.");
                 AgeTextBox.Background = Brushes.Red;
+                isValid = false;
             }
             else 
             { 
                 user.Age = int.Parse(age);
             }
-            DBAccess.SaveUserProfile(user);
-            MainWindow main = new MainWindow();
-            main.Show();
-            Close();
+            if (isValid)
+            {
+                try
+                {
+                    DBAccess.SaveUserProfile(user);
+                    MainWindow main = new MainWindow();
+                    main.Show();
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        "An error occurred while saving the user profile: " + ex.Message);
+                }
+            }
         }
 
         private void PasswordTextBox_GotFocus(object sender, RoutedEventArgs e)

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using FitnessApp.LogicLibrary;
+using System.Windows;
 
 namespace FitnessApp.WpfGui
 {
@@ -7,17 +8,23 @@ namespace FitnessApp.WpfGui
     /// </summary>
     public partial class LoginWindow : Window
     {
+        public CurrentUser CurrentUser { get; set; }
+
         public LoginWindow()
         {
             InitializeComponent();
+            CurrentUser = new CurrentUser();
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string username = NameLoginTextBox.Text;
             string password = PasswordLoginBox.Password;
+            UserProfile loginInUser = new UserProfile();
+            loginInUser.Username = username;
+            loginInUser.Password = password;
 
-            if (username == "admin" && password == "password") // Simple credential check
+            if (CurrentUser.IsLoginValid(loginInUser)) // Simple credential check
             {
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
