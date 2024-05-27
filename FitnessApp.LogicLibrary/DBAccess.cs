@@ -26,13 +26,13 @@ namespace FitnessApp.LogicLibrary
             return new List<Workout>();
         }
 
-        public static List<FootItem> LoadFootItems(string helpQuery, int calories)
+        public static List<FootItem> LoadFootItems(int calories)
         {
             try
             {
                 using (IDbConnection connection = new SQLiteConnection(ConnectionString))
                 {
-                    var query = $"SELECT * FROM FootItem WHERE Calories {helpQuery} @Calories";
+                    var query = $"SELECT * FROM FootItem WHERE Calories <= @Calories";
                     var output = connection.Query<FootItem>(query, new { Calories = calories });
                     return output.ToList();
                 }

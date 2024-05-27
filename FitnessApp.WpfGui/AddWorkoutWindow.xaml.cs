@@ -81,7 +81,7 @@ namespace FitnessApp.WpfGui
             }
             if ((0 <= hours && hours <= 24) && 
                 (0 <= minutes && minutes <= 60) && 
-                (0 <= seconds && seconds <= 60))
+                (0 < seconds && seconds <= 60))
             {
                 Workout.Duration = (3600 * hours) + (60 * minutes) + seconds;
             }

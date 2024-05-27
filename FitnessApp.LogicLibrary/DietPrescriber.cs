@@ -2,36 +2,36 @@
 {
     public class DietPrescriber
     {
-        private static string[] _strengthWorkouts = [ "Pull", "Push", "Legs", "Skill training", "Weights" ];
-        private static string[] _cardioWorkouts = ["Cardio", "Run", "Swimming"];
+        private string[] _strengthWorkouts = [ "Pull", "Push", "Legs", "Skill training", "Weights" ];
+        private string[] _cardioWorkouts = ["Cardio", "Run", "Swimming"];
 
         public DietPrescriber() { }
         
         public IEnumerable<FootItem> Prescribe(Workout workout, UserProfile user)
         {
-            int calories = 0;
+            double calories = workout.Calories * 0.4;
             if (user.Age <= 40)
             {
-                if (user.Height - user.Weight <= 100)
+                if (user.Height - user.Weight >= 100)
                 {
-                    calories = workout.Calories;
+                    calories = workout.Calories * 1.3;
+                }
+                else
+                {
+                    calories = workout.Calories * 0.7;
                 }
             }
-            else
-            {
-                calories = (int)(workout.Calories * 0.3);
-            }
-            List<FootItem> footItems = DBAccess.LoadFootItems("<=", calories);
+            List<FootItem> footItems = DBAccess.LoadFootItems((int)calories);
             if (_cardioWorkouts.Contains(workout.Type))
             {
-                double sugar = avgSugars(footItems);
+                double sugar = AvgSugars(footItems);
                 return from footItem in footItems
                        where footItem.Sugars >= sugar
                        select footItem;
             }
             if (_strengthWorkouts.Contains(workout.Type))
             {
-                double protein = avgProteins(footItems);
+                double protein = AvgProteins(footItems);
                 return from footItem in footItems
                        where footItem.Proteins >= protein
                        select footItem;
@@ -39,7 +39,7 @@
             return new List<FootItem>();
         }
 
-        private double avgProteins(List<FootItem> footItems) 
+        private double AvgProteins(List<FootItem> footItems) 
         {
             double maxProtein = 0;
             foreach (var item in footItems)
@@ -49,11 +49,11 @@
                     maxProtein = item.Proteins;
                 }
             }
-            return maxProtein / 2;
+            return maxProtein * 0.3;
 
         }
 
-        private double avgSugars(List<FootItem> footItems) 
+        private double AvgSugars(List<FootItem> footItems) 
         {
             double maxSugar = 0;
             foreach (var item in footItems) 
@@ -63,7 +63,7 @@
                     maxSugar = item.Sugars;
                 }
             }
-            return maxSugar / 2;
+            return maxSugar * 0.3;
         }
     }
 }
