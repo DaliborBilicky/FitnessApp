@@ -9,63 +9,78 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Background="#FF0081FF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Background="#FF0081FF">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="FitnessApp" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="50" FontWeight="ExtraBlack" Foreground="White"/>
                 <Label Grid.Row="1" Name="UserLabel" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="30" FontWeight="Bold" Foreground="White"/>
             </Grid> 
         </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="1" Margin="10">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel>
-                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Button Name="AddWorkoutButton" Grid.Row="0" Grid.Column="0" Content="Add workout" Margin="5" VerticalAlignment="Center" FontSize="20" Background="#FF0081FF" BorderBrush="Blue" Foreground="white" Click="AddWorkoutButton_Click"/>
-                        <ComboBox Name="FilterWorkoutsComboBox" Grid.Column="1" Grid.Row="0" Margin="5" VerticalAlignment="Center" FontSize="20" Background="#FF0081FF" BorderBrush="Blue" Foreground="White"/>
-                        <ListBox Grid.Row="1" Grid.ColumnSpan="2" Name="WorkoutsListBox">
-                             <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding Type}" FontSize="25" FontWeight="SemiBold"/>
-                                        <TextBlock>
-                                            <Run Text="Duration: " FontWeight="Bold"/>
-                                            <Run Text="{Binding Duration}"/>
-                                        </TextBlock>
-                                        <TextBlock>
-                                            <Run Text="Calories: " FontWeight="Bold"/>
-                                            <Run Text="{Binding Calories}"/>
-                                        </TextBlock>
-                                        <TextBlock>
-                                            <Run Text="Average heart rate: " FontWeight="Bold"/>
-                                            <Run Text="{Binding AvgHeartRate}"/>
-                                        </TextBlock>
-                                        <TextBlock>
-                                            <Run Text="{Binding PerformedOn}"/>
-                                        </TextBlock>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate> 
-                        </ListBox>
-                    </Grid>
-                </StackPanel>
-            </Grid> 
-        </StackPanel>
+        <Button Name="AddWorkoutButton" Grid.Row="1" Grid.Column="0" Content="Add workout" Margin="5" VerticalAlignment="Center" FontSize="20" Background="#FF0081FF" BorderBrush="Blue" Foreground="white" Click="AddWorkoutButton_Click"/>
+        <ListBox Grid.Row="2" Name="WorkoutsListBox" Margin="5" SelectionChanged="WorkoutsListBox_SelectionChanged">
+             <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Type}" FontSize="25" FontWeight="SemiBold"/>
+                        <TextBlock>
+                            <Run Text="Duration: " FontWeight="Bold"/>
+                            <Run Text="{Binding TimeSpanDuration}"/>
+                        </TextBlock>
+                        <TextBlock>
+                            <Run Text="Calories: " FontWeight="Bold"/>
+                            <Run Text="{Binding Calories}"/>
+                            <Run Text="Kcal."/>
+                        </TextBlock>
+                        <TextBlock>
+                            <Run Text="Average heart rate: " FontWeight="Bold"/>
+                            <Run Text="{Binding AvgHeartRate}"/>
+                            <Run Text="bpm"/>
+                        </TextBlock>
+                        <TextBlock>
+                            <Run Text="{Binding PerformedOn}"/>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate> 
+        </ListBox>
+        <ListBox Grid.Row="2" Grid.Column="1" Name="MealsListBox" Margin="5" SelectionChanged="WorkoutsListBox_SelectionChanged">
+             <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}" FontSize="25" FontWeight="SemiBold"/>
+                        <TextBlock>
+                            <Run Text="Calories: " FontWeight="Bold"/>
+                            <Run Text="{Binding Calories}"/>
+                            <Run Text="Kcal."/>
+                        </TextBlock>
+                        <TextBlock>
+                            <Run Text="Proteins: " FontWeight="Bold"/>
+                            <Run Text="{Binding Proteins}"/>
+                            <Run Text="g"/>
+                        </TextBlock>
+                        <TextBlock>
+                            <Run Text="Sugars: " FontWeight="Bold"/>
+                            <Run Text="{Binding Sugars}"/>
+                            <Run Text="g"/>
+                        </TextBlock>
+                        <TextBlock>
+                            <Run Text="Fats: " FontWeight="Bold"/>
+                            <Run Text="{Binding Fats}"/>
+                            <Run Text="g"/>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate> 
+        </ListBox>
     </Grid>
 </Window>

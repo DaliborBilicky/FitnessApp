@@ -3,9 +3,6 @@ using System.Windows;
 
 namespace FitnessApp.WpfGui
 {
-    /// <summary>
-    /// Interaction logic for LogInWindow.xaml
-    /// </summary>
     public partial class LoginWindow : Window
     {
         private CurrentUser _currentUser;

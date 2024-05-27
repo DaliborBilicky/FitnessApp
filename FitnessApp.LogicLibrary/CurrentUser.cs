@@ -6,7 +6,7 @@
 
         public bool IsLoginValid(UserProfile logingInUser) 
         {
-            List<UserProfile> users =  DBAccess.LoadUsers();
+            List<UserProfile> users = DBAccess.LoadUsers();
             foreach (var user in users)
             {
                 if (user.Username == logingInUser.Username && user.Password == logingInUser.Password) 

@@ -31,7 +31,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Content="Workout type:" Margin="5" FontSize="20" FontWeight="Bold"/>
-                <ComboBox Name="WorkoutTypeComboBox" Grid.Row="0" Grid.Column="1" Margin="5" FontSize="20" Background="#FF0081FF" BorderBrush="Blue" Foreground="white"/>
+                <ComboBox Name="WorkoutTypeComboBox" Grid.Row="0" Grid.Column="1" Margin="5" FontSize="20"/>
 
                 <Label Grid.Row="1" Grid.Column="0" Content="Duration:" Margin="5" FontSize="20" FontWeight="Bold"/>
                 <StackPanel Grid.Row="1" Grid.Column="1"  VerticalAlignment="Center" Margin="5">
@@ -47,21 +47,21 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Label Content="HH :" Grid.Column="0" FontSize="20"/>
-                        <TextBox Name="HoursTextBox" Grid.Column="1" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" FontSize="20"/>
+                        <TextBox Name="HoursTextBox" Grid.Column="1" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" GotFocus="HoursTextBox_GotFocus" FontSize="20"/>
 
                         <Label Content="MM :" Grid.Column="2" FontSize="20"/>
-                        <TextBox Name="MinutesTextBox" Grid.Column="3" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" FontSize="20"/>
+                        <TextBox Name="MinutesTextBox" Grid.Column="3" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" GotFocus="MinutesTextBox_GotFocus" FontSize="20"/>
 
                         <Label Content="SS :" Grid.Column="4" FontSize="20"/>
-                        <TextBox Name="SecondsTextBox" Grid.Column="5" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" FontSize="20"/>
+                        <TextBox Name="SecondsTextBox" Grid.Column="5" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" GotFocus="SecondsTextBox_GotFocus" FontSize="20"/>
                     </Grid> 
                 </StackPanel>
 
                 <Label Grid.Row="2" Grid.Column="0" Content="Calories:" Margin="5" FontSize="20" FontWeight="Bold"/>
-                <TextBox Name="CaloriesTextBox" Grid.Row="2" Grid.Column="1" Margin="5" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" FontSize="20"/>
+                <TextBox Name="CaloriesTextBox" Grid.Row="2" Grid.Column="1" Margin="5" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" GotFocus="CaloriesTextBox_GotFocus" FontSize="20"/>
 
                 <Label Grid.Row="3" Grid.Column="0" Content="Avg. heart rate:" Margin="5" FontSize="20" FontWeight="Bold"/>
-                <TextBox Name="AvgHeartRateTextBox" Grid.Row="3" Grid.Column="1" Margin="5" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" FontSize="20"/>
+                <TextBox Name="AvgHeartRateTextBox" Grid.Row="3" Grid.Column="1" Margin="5" PreviewTextInput="NumericTextBox_PreviewTextInput" DataObject.Pasting="TextBox_Pasting" GotFocus="AvgHeartRateTextBox_GotFocus" FontSize="20"/>
             </Grid> 
         </StackPanel>
         <Button Name="AddWorkoutButton" Grid.Row="2" Grid.Column="1" Content="Add" FontSize="30" Margin="10" Background="#FF0081FF" BorderBrush="Blue" Foreground="white" Click="AddWorkoutButton_Click"/>

@@ -6,9 +6,6 @@ using FitnessApp.LogicLibrary;
 
 namespace FitnessApp.WpfGui
 {
-    /// <summary>
-    /// Interaction logic for CreateProfileWindow.xaml
-    /// </summary>
     public partial class CreateProfileWindow : Window
     {
         private Brush _originalTextBoxColor;
@@ -28,7 +25,7 @@ namespace FitnessApp.WpfGui
         }
 
         // Pomohol som si ChatGPT ale v podstate len kozmeticky doplnok
-        private static bool IsTextNumeric(string text)
+        private bool IsTextNumeric(string text)
         {
             Regex regex = new Regex("[^0-9]+"); // regex that matches disallowed text
             return !regex.IsMatch(text);
@@ -56,9 +53,9 @@ namespace FitnessApp.WpfGui
             UserProfile user = new UserProfile() { Username = " " };
             string name = NameTextBox.Text;
             string password = PasswordTextBox.Text;
-            string hieght = HeightTextBox.Text;
-            string weight = WeightTextBox.Text;
-            string age = AgeTextBox.Text;
+            int hieght = int.TryParse(HeightTextBox.Text, out int result) ? result : 0;
+            int weight = int.TryParse(WeightTextBox.Text, out int result1) ? result1 : 0;
+            int age = int.TryParse(AgeTextBox.Text, out int result2) ? result2 : 0;
             bool isValid = true;
 
             if (name == "")
@@ -89,7 +86,7 @@ namespace FitnessApp.WpfGui
             {
                 user.Password = password;
             }
-            if (hieght == "")
+            if (hieght <= 0)
             {
                 MessageBox.Show("Forgot to insert height.");
                 HeightTextBox.Background = Brushes.Red;
@@ -97,9 +94,9 @@ namespace FitnessApp.WpfGui
             }
             else 
             { 
-                user.Height = int.Parse(hieght);
+                user.Height = hieght;
             }
-            if (weight == "")
+            if (weight <= 0)
             {
                 MessageBox.Show("Forgot to insert weight.");
                 WeightTextBox.Background = Brushes.Red;
@@ -107,9 +104,9 @@ namespace FitnessApp.WpfGui
             }
             else 
             { 
-                user.Weight = int.Parse(weight);
+                user.Weight = weight;
             }
-            if (age == "")
+            if (age <= 0)
             {
                 MessageBox.Show("Forgot to insert age.");
                 AgeTextBox.Background = Brushes.Red;
@@ -117,7 +114,7 @@ namespace FitnessApp.WpfGui
             }
             else 
             { 
-                user.Age = int.Parse(age);
+                user.Age = age;
             }
             if (isValid)
             {
